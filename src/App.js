@@ -52,22 +52,60 @@ class App extends Component {
       });
   }
 
+  getTrend(island) {
+    let trendElem;
+    this.state.Islands.forEach((elem) => {
+      if (elem && elem.fields.Name === island.name) {
+        trendElem = elem;
+      } else trendElem = {};
+    });
+
+    if (trendElem && trendElem.fields) {
+      let trendId = trendElem["fields"]["Trend History"][0]; //needs to change for multiple weeks
+      let trendItem = this.state.trendHistory.find(
+        (elem) => elem.id === trendId
+      );
+      if (trendItem && trendItem.fields) {
+        return trendItem.fields.Type;
+      }
+      else {
+        return "loading..."
+      }
+    }
+  }
+
+  getPrices(island) {
+    let priceCodeArray = [];
+    this.state.Islands.forEach((elem) => {
+      if (elem && elem.fields.Name === island.name) {
+        priceCodeArray = elem.fields.Prices;
+      }
+    });
+    console.log("priceCodeArray", priceCodeArray);
+    let pricesArray = [];
+    priceCodeArray.forEach(code => {
+      if (this.state.prices && this.state.prices.length > 0) {
+        let selection = this.state.prices.find((elem) => elem.id === code);
+        let priceItem = {};
+        priceItem.price = selection.fields.Price;
+        priceItem.day = selection.fields.Day;
+        console.log("PI", priceItem)
+        console.log("S", selection)
+        pricesArray.push(priceItem);
+      }
+    })
+    console.log("PricesArray:", pricesArray)
+    return pricesArray;
+  }
+
   getInfo(island) {
     let islandData = {};
     console.log("this.state.Islands", this.state.Islands);
-    this.state.Islands[0] ? console.log("!!!!", this.state.Islands[0].fields.Name.toUpperCase()) : console.log('fail');
-    let trendElem
-    this.state.Islands.forEach(elem => { 
-      if (elem && elem.fields.Name.toUpperCase() === island.name.toUpperCase()) {
-        trendElem = elem;
-      }
-      else trendElem = {}
-    });
+
     islandData.name = island.name;
-    if (trendElem && trendElem.fields) {
-      islandData.trend = trendElem["fields"]["Trend History"][0]; //needs to change for multiple weeks
-    }
-    else { console.log("fuuuuck")}
+    islandData.prices = this.getPrices(island);
+    islandData.trend = this.getTrend(island);
+
     return islandData;
   }
 
