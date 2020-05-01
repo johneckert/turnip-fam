@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/turnip-fam/static/css/main.d5eee1c3.chunk.css",
+    "main.js": "/turnip-fam/static/js/main.3e4cdd1a.chunk.js",
+    "main.js.map": "/turnip-fam/static/js/main.3e4cdd1a.chunk.js.map",
+    "runtime-main.js": "/turnip-fam/static/js/runtime-main.422d4646.js",
+    "runtime-main.js.map": "/turnip-fam/static/js/runtime-main.422d4646.js.map",
+    "static/js/2.dee55861.chunk.js": "/turnip-fam/static/js/2.dee55861.chunk.js",
+    "static/js/2.dee55861.chunk.js.map": "/turnip-fam/static/js/2.dee55861.chunk.js.map",
+    "index.html": "/turnip-fam/index.html",
+    "precache-manifest.a58f2860a2ddb3779962412a594ac632.js": "/turnip-fam/precache-manifest.a58f2860a2ddb3779962412a594ac632.js",
+    "service-worker.js": "/turnip-fam/service-worker.js",
+    "static/css/main.d5eee1c3.chunk.css.map": "/turnip-fam/static/css/main.d5eee1c3.chunk.css.map",
+    "static/js/2.dee55861.chunk.js.LICENSE.txt": "/turnip-fam/static/js/2.dee55861.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.422d4646.js",
+    "static/js/2.dee55861.chunk.js",
+    "static/css/main.d5eee1c3.chunk.css",
+    "static/js/main.3e4cdd1a.chunk.js"
+  ]
+}
