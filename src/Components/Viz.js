@@ -4,8 +4,6 @@ const Viz = props => {
 
     let prices = props.islandData.prices;
 
-    // let tioContent = "";
-
     let mAM = "",
       mPM = "",
       tAM = "",
@@ -85,19 +83,6 @@ const Viz = props => {
         }
     }
 
-    // fetch(link)
-    //   .then((res) => res.text())
-    //   .then((body) => {
-    //     let table = body.split('<div class="table-wrapper">')[1].split('<div style="transform:rotate(180deg)">')[0]
-    //     tioContent = "<div><div>" + table;
-    //     // console.log(table)
-    //   })
-    //   .catch(function (err) {
-    //     console.log("failed to load ", link, err.stack);
-    //   });
-
-    // console.log("content", tioContent);
-    // <div Fragment={{ __html: tioContent }} />
     return (
       <div className="viz">
         <a href={link} target="_blank" rel="noopener noreferrer">
