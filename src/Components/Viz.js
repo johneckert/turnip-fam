@@ -86,7 +86,7 @@ const Viz = props => {
     return (
       <div className="viz">
         <a href={link} target="_blank" rel="noopener noreferrer">
-          Open {props.islandData.name} on turnipprophet.io
+          Open on turnipprophet.io
         </a>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Island from './Components/Island';
+import IslandNav from './Components/IslandNav';
 
 class App extends Component {
   state = {
@@ -9,6 +10,7 @@ class App extends Component {
       { name: "Beachville", id: "rec5iK0WpYyf3HSZq" },
       { name: "Quarantown", id: "recsTTbtgsGb8H2f8" },
     ],
+    currentIsland: "Quarantown",
     prices: [],
     trendHistory: [],
     Islands: [],
@@ -95,32 +97,42 @@ class App extends Component {
     return pricesArray;
   }
 
-  getInfo(island) {
-    let islandData = {};
-    islandData.name = island.name;
-    islandData.prices = this.getPrices(island);
-    islandData.trend = this.getTrend(island);
-
-    return islandData;
-  }
-
   testState() {
     console.log(this.state);
   }
 
-  render() {
-    let islands = this.state.islandsMap.map((island, key) => {
-      return <Island islandData={this.getInfo(island)} key={key}></Island>;
-    });
+  setCurrentIsland = (e) => {
+    let name = e.target.innerHTML
+    this.setState({
+      ...this.state,
+      currentIsland: name
+    })
+  } 
 
+  getCurrentIslandData() {
+    let islandData = {};
+    let currentIsland = this.state.islandsMap.filter(isl => isl.name === this.state.currentIsland)[0]
+    console.log("ci", currentIsland)
+    islandData.name = currentIsland.name;
+    islandData.prices = this.getPrices(currentIsland);
+    islandData.trend = this.getTrend(currentIsland);
+    console.log("islandData", islandData)
+    return islandData;
+  }
+
+  render() {
     this.testState();
 
     return (
       <div className="App">
         <header className="App-header">
           <h1>Turnip Fam</h1>
+          <IslandNav
+            islands={this.state.islandsMap}
+            setCurrentIsland={this.setCurrentIsland}
+          ></IslandNav>
         </header>
-        {islands}
+        <Island islandData={this.getCurrentIslandData()}></Island>;
       </div>
     );
   }

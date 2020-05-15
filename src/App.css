@@ -15,6 +15,22 @@
   font-size: calc(10px + 2vmin);
 }
 
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: auto;
+}
+
+.tab {
+  padding: 1rem 3rem;
+  cursor: pointer;
+}
+
+.tab:hover {
+  text-decoration: underline;
+}
+
 .App-link {
   color: #61dafb;
 }
