@@ -7,7 +7,12 @@ const Island = props => {
     let prices;
     if (props.islandData.prices) {
         prices = props.islandData.prices.map((price, key) => {
-        return <li key={key}>{price.day}: {price.price}</li>;
+        return (
+          <div key={key}>
+            <span>{price.day}:</span>
+            <span>{price.price}</span>
+          </div>
+        );
         });
     } else {
         prices = "";
@@ -16,8 +21,11 @@ const Island = props => {
       <div className="island">
         <h1>{islandName}</h1>
         <div className="data">
-          <p>Trend: {trend}</p>
-          <ul>{prices}</ul>
+          <div>
+            <span>Trend:</span> 
+            <span>{trend}</span>
+          </div>
+          <div>{prices}</div>
         </div>
         <Viz islandData={props.islandData}></Viz>
       </div>
