@@ -2,7 +2,6 @@ import React from "react";
 import Viz from "./Viz";
 
 const Island = props => {
-    console.log("Island props", props);
     let islandName = props.islandData.name.toUpperCase();
     let trend = props.islandData.trend;
     let prices;
@@ -14,9 +13,9 @@ const Island = props => {
         prices = "";
     }
     return (
-      <div class="island">
+      <div className="island">
         <h1>{islandName}</h1>
-        <div class="data">
+        <div className="data">
           <p>Trend: {trend}</p>
           <ul>{prices}</ul>
         </div>

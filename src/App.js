@@ -20,7 +20,6 @@ class App extends Component {
     )
       .then((res) => res.json())
       .then((json) => {
-        console.log("Prices JSON:", json.records);
         this.setState({
           ...this.state,
           prices: json.records,
@@ -32,7 +31,6 @@ class App extends Component {
     )
       .then((res) => res.json())
       .then((json) => {
-        console.log("Trend JSON:", json.records);
         this.setState({
           ...this.state,
           trendHistory: json.records,
@@ -44,7 +42,6 @@ class App extends Component {
     )
       .then((res) => res.json())
       .then((json) => {
-        console.log("Island JSON:", json.records);
         this.setState({
           ...this.state,
           Islands: json.records,
@@ -81,27 +78,25 @@ class App extends Component {
         priceCodeArray = elem.fields.Prices;
       }
     });
-    console.log("priceCodeArray", priceCodeArray);
     let pricesArray = [];
     priceCodeArray.forEach(code => {
       if (this.state.prices && this.state.prices.length > 0) {
-        let selection = this.state.prices.find((elem) => elem.id === code);
+        let selection = this.state.prices
+          .filter((price) => price.fields.Status === "Current")
+          .find((elem) => elem.id === code);
         let priceItem = {};
-        priceItem.price = selection.fields.Price;
-        priceItem.day = selection.fields.Day;
-        console.log("PI", priceItem)
-        console.log("S", selection)
-        pricesArray.push(priceItem);
+        if (selection && selection.fields) {
+          priceItem.price = selection.fields.Price;
+          priceItem.day = selection.fields.Day;
+          pricesArray.push(priceItem);
+        }
       }
     })
-    console.log("PricesArray:", pricesArray)
     return pricesArray;
   }
 
   getInfo(island) {
     let islandData = {};
-    console.log("this.state.Islands", this.state.Islands);
-
     islandData.name = island.name;
     islandData.prices = this.getPrices(island);
     islandData.trend = this.getTrend(island);

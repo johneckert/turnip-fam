@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 
 const Viz = props => {
-    console.log("viz props", props);
 
     let prices = props.islandData.prices;
+
+    // let tioContent = "";
 
     let mAM = "",
       mPM = "",
@@ -66,9 +67,9 @@ const Viz = props => {
         }
     })
 
-      let link = `https://turnipprophet.io?prices=${pp}.${mAM}.${mPM}.${tAM}.${tPM}.${wAM}.${wPM}.${thAM}.${thPM}.${fAM}.${fPM}.${sAM}.${sPM}${pattern}`;
+    let link = `https://turnipprophet.io?prices=${pp}.${mAM}.${mPM}.${tAM}.${tPM}.${wAM}.${wPM}.${thAM}.${thPM}.${fAM}.${fPM}.${sAM}.${sPM}${pattern}`;
 
-      function getPatternCode() {
+    function getPatternCode() {
         switch(props.islandData.trend) {
             case 'Fluctuating':
                 return `&pattern=0`;
@@ -82,15 +83,27 @@ const Viz = props => {
                 return '';
             
         }
-      }
+    }
 
+    // fetch(link)
+    //   .then((res) => res.text())
+    //   .then((body) => {
+    //     let table = body.split('<div class="table-wrapper">')[1].split('<div style="transform:rotate(180deg)">')[0]
+    //     tioContent = "<div><div>" + table;
+    //     // console.log(table)
+    //   })
+    //   .catch(function (err) {
+    //     console.log("failed to load ", link, err.stack);
+    //   });
+
+    // console.log("content", tioContent);
+    // <div Fragment={{ __html: tioContent }} />
     return (
-        <div class="viz">
-            <iframe title={props.islandData.name} src={link}></iframe>
-            <a href={link} target="_blank">
-                Open {props.islandData.name} on turnipprophet.io
-            </a>
-        </div>
+      <div className="viz">
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          Open {props.islandData.name} on turnipprophet.io
+        </a>
+      </div>
     );
 };
 
