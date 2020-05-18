@@ -60,15 +60,20 @@ class App extends Component {
     });
 
     if (trendElem && trendElem.fields) {
-      let trendId = trendElem["fields"]["Trend History"][0]; //needs to change for multiple weeks
-      let trendItem = this.state.trendHistory.find(
-        (elem) => elem.id === trendId
-      );
-      if (trendItem && trendItem.fields) {
-        return trendItem.fields.Type;
-      }
-      else {
-        return "loading..."
+      let trendIdArray = trendElem["fields"]["Trend History"];
+      console.log("TIA", trendIdArray)
+      // let trendId = trendElem["fields"]["Trend History"][0]; //needs to change for multiple weeks
+      let trendItems = trendIdArray.map(trendId => {
+        return this.state.trendHistory.find(elem => elem.id === trendId)
+      })
+      if (trendItems.length > 0) {
+        if (trendItems[0] && trendItems[0].fields) {
+          let trendItem = trendItems.filter(ti => ti.fields.Status === "Current")[0]
+          return trendItem.fields.Type;
+        }
+        else {
+          return "loading..."
+        }
       }
     }
   }
