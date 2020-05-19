@@ -68,15 +68,16 @@ const Viz = props => {
     let link = `https://turnipprophet.io?prices=${pp}.${mAM}.${mPM}.${tAM}.${tPM}.${wAM}.${wPM}.${thAM}.${thPM}.${fAM}.${fPM}.${sAM}.${sPM}${pattern}`;
 
     function getPatternCode() {
+        console.log("pattern", props.islandData.trend)
         switch(props.islandData.trend) {
             case 'Fluctuating':
                 return `&pattern=0`;
             case 'Small Spike':
-                return `&pattern=1`;
-            case 'Large Spike':
-                return `&pattern=2`;
-            case 'Decreasing':
                 return `&pattern=3`;
+            case 'Large Spike':
+                return `&pattern=1`;
+            case 'Decrease':
+                return `&pattern=2`;
             default:
                 return '';
             
